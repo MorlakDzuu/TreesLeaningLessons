@@ -34,6 +34,22 @@ public class BinaryTree<T>
         {
             Value = value;
         }
+
+        public int Height()
+        {
+            if (Left == null && Right == null) return 0;
+            int leftHeight = Left?.Height() ?? -1;
+            int rightHeight = Right?.Height() ?? -1;
+            return Math.Max(leftHeight, rightHeight) + 1;
+        }
+
+        public int CountLeaves()
+        {
+            if (Left == null && Right == null) return 1;
+            int leftLeaves = Left?.CountLeaves() ?? 0;
+            int rightLeaves = Right?.CountLeaves() ?? 0;
+            return leftLeaves + rightLeaves;
+        }
     }
 
     /// <summary>
@@ -48,8 +64,8 @@ public class BinaryTree<T>
     /// <returns>Высота дерева, -1 для пустого дерева</returns>
     public int Height()
     {
-        // TODO: Реализовать вычисление высоты
-        throw new NotImplementedException();
+        if (Root == null) return -1;
+        return Root.Height();
     }
 
     /// <summary>
@@ -59,8 +75,8 @@ public class BinaryTree<T>
     /// <returns>Количество листьев</returns>
     public int CountLeaves()
     {
-        // TODO: Реализовать подсчёт листьев
-        throw new NotImplementedException();
+        if (Root == null) return 0;
+        return Root.CountLeaves();
     }
 }
 
